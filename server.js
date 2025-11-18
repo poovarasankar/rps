@@ -9,11 +9,14 @@ app.use(express.static("public"));
 
 const server = http.createServer(app);
 const io = new Server(server, {
-    cors: {
-        origin: "*",
-        methods: ["GET", "POST"]
-    },
+  cors: {
+    origin: "*",
+    methods: ["GET", "POST"]
+  },
+  transports: ["websocket", "polling"],
+  allowEIO3: true
 });
+
 
 // Game configuration
 const GAME_CONFIG = {
@@ -331,4 +334,5 @@ const PORT = process.env.PORT || 3000;
 server.listen(PORT, () => {
     console.log(`🔥 RPS Arena Server running on port ${PORT}`);
     console.log(`🎯 Game Config: ${GAME_CONFIG.MAX_SCORE} points to win, ${GAME_CONFIG.ROUND_TIME}s rounds`);
+
 });
