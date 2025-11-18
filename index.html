@@ -332,7 +332,11 @@
     </div>
 
    <script>
- const socket = io("https://rps-nigv.onrender.com");
+const socket = io("https://rps-nigv.onrender.com", {
+    transports: ["websocket", "polling"],
+    withCredentials: false
+});
+
     let roomId = null;
     let currentRound = 1;
     let timerInterval = null;
@@ -597,3 +601,4 @@
 </body>
 
 </html>
+
